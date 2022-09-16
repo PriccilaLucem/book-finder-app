@@ -3,8 +3,9 @@ from app.configs.database import db
 
 @dataclass
 class Category(db.Model):
+    id: str
     category_name: str
-
+    
     FIELDNAMES = ['id', 'category_name']
     __tablename__ = 'categories'
 
@@ -13,6 +14,7 @@ class Category(db.Model):
 
 
     @staticmethod
-    def validate_arg(**kwargs):
-        if type(kwargs['category_name']) != str:
+    def validate_arg(category_name):
+        if type(category_name) != str:
             raise TypeError
+        return category_name

@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from app.configs.database import db
-import uuid
 
 
 books_categories = db.Table('books_categories',
@@ -13,6 +12,7 @@ class Book(db.Model):
     book_name: str
     writer: str
     synopsis: str
+    categories: dict
 
     FIELDNAMES = ['id', 'book_name', 'writer', 'synopsis']
     __tablename__ = 'books'
@@ -21,7 +21,7 @@ class Book(db.Model):
     book_name = db.Column(db.String(50), nullable=False)
     writer = db.Column(db.String(50), nullable=False)
     synopsis = db.Column(db.Text, nullable=False)
-    categories = db.relationship('Book', secondary=books_categories, backref='books')
+    categories = db.relationship('Category', secondary=books_categories, uselist=True, backref= db.backref('books', uselist=True))
     
 
     @staticmethod
@@ -33,3 +33,4 @@ class Book(db.Model):
         if type(kwargs['synopsis']) != str:
             raise TypeError
         
+        return {k:v for(k,v) in kwargs.items() if k in Book.FIELDNAMES}
