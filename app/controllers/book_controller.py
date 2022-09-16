@@ -1,10 +1,7 @@
 from flask import jsonify, request
-from  werkzeug.exceptions import NotFound
 from app.models.book_model import Book
-from sqlalchemy.exc import IntegrityError, ProgrammingError
 from app.controllers.category_controller import get_or_create_category
 from app.configs.database import db
-from ipdb import set_trace
 
 def get_all_books():
     books_list = Book.query.all()
