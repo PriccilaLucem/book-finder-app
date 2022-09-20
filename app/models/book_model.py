@@ -9,19 +9,22 @@ books_categories = db.Table('books_categories',
 
 @dataclass
 class Book(db.Model):
+    id: int
     book_name: str
     writer: str
     synopsis: str
     categories: dict
 
     FIELDNAMES = ['id', 'book_name', 'writer', 'synopsis']
+    VALID_ARGS = [ 'book_name', 'writer', 'categories']
+
     __tablename__ = 'books'
     
     id = db.Column(db.Integer, primary_key= True)
     book_name = db.Column(db.String(50), nullable=False)
     writer = db.Column(db.String(50), nullable=False)
     synopsis = db.Column(db.Text, nullable=False)
-    categories = db.relationship('Category', secondary=books_categories, uselist=True, backref= db.backref('books', uselist=True))
+    categories = db.relationship('Category', secondary=books_categories, uselist=True, backref= db.backref('books', uselist=True, lazy='dynamic'))
     
 
     @staticmethod

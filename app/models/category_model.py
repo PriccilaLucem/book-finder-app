@@ -17,4 +17,6 @@ class Category(db.Model):
     def validate_arg(category_name):
         if type(category_name) != str:
             raise TypeError
+        if ',' in category_name:
+            raise AttributeError
         return category_name

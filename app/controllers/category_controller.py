@@ -1,5 +1,6 @@
 from app.models.category_model import Category
 from app.configs.database import db
+from flask import jsonify
 
 def get_or_create_category(category_list: list):
     get_or_created_category_list = []
@@ -19,3 +20,8 @@ def get_or_create_category(category_list: list):
             get_or_created_category_list.append(category)
             
     return get_or_created_category_list
+
+def get_all_categories():
+    categories = Category.query.all()
+
+    return jsonify(categories)
