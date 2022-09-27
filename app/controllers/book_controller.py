@@ -9,10 +9,11 @@ def get_all_books():
     args = request.args.items()
     args = {key: value for (key, value) in args if key in Book.VALID_ARGS}
     books_list = Book.query
+    
     if 'writer' in args:
         books_list = books_list.filter(Book.writer.like(f"%{args['writer']}%"))
     if 'book_name' in args:
-        books_list = books_list.query.filter(Book.book_name.like(f"%{args['book_name']}%"))
+        books_list = books_list.filter(Book.book_name.like(f"%{args['book_name']}%"))
     if 'categories' in args:
         categories = args['categories'].split(',')
         for i in categories:
