@@ -28,3 +28,12 @@ export const Button = styled.button`
     opacity: 0.7;
   }
 `;
+
+export const LinkSection = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  a {
+    margin: 10px;
+  }
+`;

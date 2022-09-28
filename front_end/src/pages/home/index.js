@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { Button, ButtonSection, Header } from "./styles";
+import { Button, ButtonSection, Header, LinkSection } from "./styles";
+import { AiFillLinkedin, AiFillGithub } from "react-icons/ai";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -15,6 +16,18 @@ const Home = () => {
           Register Book
         </Button>
       </ButtonSection>
+      <LinkSection>
+        <a href="https://www.linkedin.com/in/priccila-lucem/">
+          <AiFillLinkedin
+            style={{ color: "blue", width: "50px", height: "50px" }}
+          ></AiFillLinkedin>
+        </a>
+        <a href="https://github.com/PriccilaLucem">
+          <AiFillGithub
+            style={{ color: "black", width: "50px", height: "50px" }}
+          ></AiFillGithub>
+        </a>
+      </LinkSection>
     </main>
   );
 };
